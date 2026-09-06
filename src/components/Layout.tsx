@@ -1,10 +1,10 @@
 import { Outlet, Link, useLocation } from "react-router";
-import { BookOpen, Layers, Zap, Trophy, LayoutDashboard, LogOut, Moon, Sun, Bell } from "lucide-react";
+import { BookOpen, Layers, Zap, Trophy, LayoutDashboard, Moon, Sun, Bell } from "lucide-react";
 import { useAuth } from "../contexts/AuthContext";
 import { useTheme } from "../contexts/ThemeContext";
 
 export default function Layout() {
-  const { user, logout } = useAuth();
+  const { user } = useAuth();
   const { theme, setTheme } = useTheme();
   const location = useLocation();
 
@@ -76,17 +76,10 @@ export default function Layout() {
             </button>
             <button 
               onClick={requestNotifications}
-              className="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
+              className="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors ml-auto"
               title="Activar notificaciones"
             >
               <Bell size={20} />
-            </button>
-            <button 
-              onClick={logout}
-              className="p-2 rounded-lg bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 hover:bg-red-100 dark:hover:bg-red-900/40 transition-colors ml-auto"
-              title="Cerrar sesión"
-            >
-              <LogOut size={20} />
             </button>
           </div>
           {user && (
@@ -116,9 +109,6 @@ export default function Layout() {
           <div className="flex items-center gap-2">
              <button onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')} className="p-2 text-slate-600 dark:text-slate-300">
                 {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
-             </button>
-             <button onClick={logout} className="p-2 text-red-600 dark:text-red-400">
-               <LogOut size={18} />
              </button>
           </div>
         </header>

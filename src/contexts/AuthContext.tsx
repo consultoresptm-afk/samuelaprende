@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { User, onAuthStateChanged, signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth";
+import { User, onAuthStateChanged, signInAnonymously } from "firebase/auth";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { auth, db } from "../firebase";
 
@@ -17,16 +17,12 @@ interface AppUser {
 interface AuthContextType {
   user: AppUser | null;
   loading: boolean;
-  loginWithGoogle: () => Promise<void>;
-  logout: () => Promise<void>;
   updateUserStats: (addedScore: number, addedCoins: number) => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType>({
   user: null,
   loading: true,
-  loginWithGoogle: async () => {},
-  logout: async () => {},
   updateUserStats: async () => {},
 });
 
@@ -73,7 +69,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
           appUserData = {
             uid: firebaseUser.uid,
-            displayName: data.displayName || firebaseUser.displayName,
+            displayName: data.displayName || firebaseUser.displayName || "Estudiante Anónimo",
             email: firebaseUser.email,
             score: data.score || 0,
             level: data.level || 1,
@@ -84,7 +80,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         } else {
           appUserData = {
             uid: firebaseUser.uid,
-            displayName: firebaseUser.displayName || "Usuario",
+            displayName: firebaseUser.displayName || "Estudiante Anónimo",
             email: firebaseUser.email,
             score: 0,
             level: 1,
@@ -98,23 +94,19 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           });
         }
         setUser(appUserData);
+        setLoading(false);
       } else {
-        setUser(null);
+        try {
+          await signInAnonymously(auth);
+        } catch (error) {
+          console.error("Error logging in anonymously:", error);
+          setLoading(false);
+        }
       }
-      setLoading(false);
     });
 
     return () => unsubscribe();
   }, []);
-
-  const loginWithGoogle = async () => {
-    const provider = new GoogleAuthProvider();
-    await signInWithPopup(auth, provider);
-  };
-
-  const logout = async () => {
-    await signOut(auth);
-  };
 
   const updateUserStats = async (addedScore: number, addedCoins: number) => {
     if (!user) return;
@@ -142,7 +134,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   return (
-    <AuthContext.Provider value={{ user, loading, loginWithGoogle, logout, updateUserStats }}>
+    <AuthContext.Provider value={{ user, loading, updateUserStats }}>
       {children}
     </AuthContext.Provider>
   );
