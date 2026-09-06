@@ -1,0 +1,6 @@
+{
+  "name": "SamuelAprende",
+  "description": "Plataforma de aprendizaje gamificada para dominar identidades trigonométricas con modo flashcard, exámenes contrarreloj y clasificaciones globales.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

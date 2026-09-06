@@ -1,0 +1,35 @@
+{
+  "collections": {
+    "users": {
+      "schema": {
+        "displayName": "string",
+        "email": "string",
+        "score": "number",
+        "level": "number",
+        "coins": "number",
+        "streak": "number",
+        "lastStudyDate": "string",
+        "createdAt": "timestamp"
+      },
+      "rules": {
+        "read": "request.auth != null",
+        "write": "request.auth != null && request.auth.uid == document"
+      }
+    },
+    "studySessions": {
+      "schema": {
+        "userId": "string",
+        "date": "string",
+        "mode": "string",
+        "score": "number",
+        "totalQuestions": "number",
+        "durationSeconds": "number",
+        "timestamp": "timestamp"
+      },
+      "rules": {
+        "read": "request.auth != null && resource.data.userId == request.auth.uid",
+        "write": "request.auth != null && request.resource.data.userId == request.auth.uid"
+      }
+    }
+  }
+}
