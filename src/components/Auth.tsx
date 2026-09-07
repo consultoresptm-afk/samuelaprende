@@ -2,20 +2,28 @@ import { useState } from 'react';
 import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { auth } from '../firebase';
 import { Rocket } from 'lucide-react';
+import { useAuth } from '../contexts/AuthContext';
 
 export default function Auth() {
-  const [error, setError] = useState('');
+  const { error: contextError } = useAuth();
+  const [localError, setLocalError] = useState('');
   const [loading, setLoading] = useState(false);
+
+  const displayError = localError || contextError;
 
   const handleGoogleSignIn = async () => {
     try {
-      setError('');
+      setLocalError('');
       setLoading(true);
       const provider = new GoogleAuthProvider();
       await signInWithPopup(auth, provider);
     } catch (err: any) {
       console.error("Error signing in with Google", err);
-      setError("No se pudo iniciar sesión. Asegúrate de tener habilitado el inicio de sesión con Google en Firebase.");
+      if (err.code === 'auth/unauthorized-domain') {
+        setLocalError("Dominio no autorizado. Añade este dominio en Firebase -> Authentication -> Settings -> Authorized domains.");
+      } else {
+        setLocalError("No se pudo iniciar sesión. " + (err.message || "Asegúrate de tener habilitado Google en Firebase."));
+      }
     } finally {
       setLoading(false);
     }
@@ -32,9 +40,9 @@ export default function Auth() {
           <p className="text-slate-600 dark:text-slate-400">Inicia sesión para guardar tu progreso, medallas y puntos.</p>
         </div>
 
-        {error && (
+        {displayError && (
           <div className="bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 p-4 rounded-xl text-sm mb-6 border border-red-100 dark:border-red-900/30">
-            {error}
+            {displayError}
           </div>
         )}
 
