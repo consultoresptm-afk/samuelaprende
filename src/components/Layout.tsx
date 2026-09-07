@@ -21,7 +21,7 @@ export default function Layout() {
       Notification.requestPermission().then((permission) => {
         if (permission === "granted") {
           new Notification("¡Recordatorios activados!", {
-            body: "Te recordaremos repasar para tu examen de identidades trigonométricas.",
+            body: "Te recordaremos repasar tus lecciones de matemáticas.",
             icon: "/favicon.ico"
           });
         }
@@ -40,7 +40,7 @@ export default function Layout() {
             </div>
             <div className="flex flex-col overflow-hidden">
               <span className="font-bold text-xl tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-pink-400 to-violet-400 truncate">SamuelAprende</span>
-              <span className="text-[10px] uppercase tracking-widest text-slate-500 dark:text-slate-400 font-bold truncate">Trigonometría Master</span>
+              <span className="text-[10px] uppercase tracking-widest text-slate-500 dark:text-slate-400 font-bold truncate">Matemáticas Master</span>
             </div>
           </div>
           <div className="flex md:flex-col justify-around md:justify-start p-2 md:p-4 gap-1 md:gap-2">
@@ -127,7 +127,7 @@ export default function Layout() {
         <div className="h-12 bg-indigo-600 px-6 flex items-center justify-between text-xs font-bold overflow-hidden shrink-0 text-white mt-auto rounded-t-xl mx-4 md:mx-6 md:rounded-t-2xl shadow-[0_-4px_20px_rgba(79,70,229,0.3)]">
           <div className="flex items-center gap-2 md:gap-4 truncate">
             <span className="animate-pulse">🔔</span>
-            <span className="truncate">PRÓXIMO REPASO: Mañana a las 4:00 PM - "Examen de Identidades"</span>
+            <span className="truncate">PRÓXIMO REPASO: Mañana a las 4:00 PM - "Matemáticas Generales"</span>
           </div>
           <div className="hidden md:flex gap-4">
             <span>ID: #SAM-2024-MATH</span>

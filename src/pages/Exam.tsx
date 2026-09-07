@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { EXAM_QUESTIONS } from "../data/trigonometry";
+import { EXAM_QUESTIONS } from "../data/mathData";
 import { useAuth } from "../contexts/AuthContext";
 import { doc, collection, addDoc, getDoc } from "firebase/firestore";
 import { db } from "../firebase";

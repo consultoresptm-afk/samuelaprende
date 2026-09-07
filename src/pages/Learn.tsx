@@ -1,4 +1,4 @@
-import { FORMULAS } from "../data/trigonometry";
+import { FORMULAS } from "../data/mathData";
 
 export default function Learn() {
   return (

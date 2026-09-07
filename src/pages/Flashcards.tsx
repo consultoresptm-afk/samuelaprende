@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FLASHCARDS } from "../data/trigonometry";
+import { FLASHCARDS } from "../data/mathData";
 import { ArrowRight, RotateCcw } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 

@@ -24,6 +24,35 @@ export const FORMULAS = [
       "Ángulo de depresión: Se mide desde la horizontal hacia abajo (ej. mirar desde un avión al suelo)."
     ],
     explanation: "El ángulo de elevación desde A hasta B es igual al ángulo de depresión desde B hasta A (ángulos alternos internos)."
+  },
+  {
+    category: "Casos de Factorización",
+    formulas: [
+      "Factor Común: ab + ac = a(b + c)",
+      "Diferencia de Cuadrados: a² - b² = (a + b)(a - b)",
+      "Trinomio Cuadrado Perfecto: a² ± 2ab + b² = (a ± b)²",
+      "Trinomio de la forma x² + bx + c: (x + p)(x + q) donde p+q=b y p*q=c"
+    ],
+    explanation: "Permite simplificar expresiones algebraicas transformando sumas/restas en multiplicaciones."
+  },
+  {
+    category: "Uso de la Calculadora Científica",
+    formulas: [
+      "Modo Angular: Revisa si la pantalla dice 'DEG' (grados) o 'RAD' (radianes) antes de usar seno/coseno/tangente.",
+      "Botón 'ANS': Guarda el resultado anterior para usarlo directamente en el próximo cálculo y no perder decimales.",
+      "Fracciones: Usa el botón 'S<=>D' o 'a b/c' para pasar de fracción a decimal al instante.",
+      "Paréntesis: Usa siempre paréntesis al dividir operaciones largas: (a+b)/(c+d)."
+    ],
+    explanation: "Trucos para no equivocarse por errores de digitación en la calculadora."
+  },
+  {
+    category: "Técnicas Visuales de Multiplicación",
+    formulas: [
+      "Método Chino/Japonés (Líneas): Dibuja líneas paralelas cruzadas para cada dígito. Cuenta las intersecciones para obtener el resultado.",
+      "Truco de los dedos (Tabla del 9): Pon tus 10 dedos frente a ti. Para 9x3, baja el tercer dedo. Quedan 2 dedos a la izquierda y 7 a la derecha = 27.",
+      "Tabla del 11: Para multiplicar 11 x 35, separa el 3 y el 5. Suma 3+5=8 y ponlo en el medio = 385."
+    ],
+    explanation: "Alternativas visuales y táctiles a la memorización tradicional de las tablas."
   }
 ];
 
@@ -37,7 +66,13 @@ export const FLASHCARDS = [
   { front: "Razón que relaciona el Cateto Opuesto y la Hipotenusa", back: "Seno" },
   { front: "Razón que relaciona el Cateto Adyacente y la Hipotenusa", back: "Coseno" },
   { front: "¿Qué es el ángulo de elevación?", back: "El ángulo formado por la línea horizontal y la línea de visión hacia arriba." },
-  { front: "¿Qué es el ángulo de depresión?", back: "El ángulo formado por la línea horizontal y la línea de visión hacia abajo." }
+  { front: "¿Qué es el ángulo de depresión?", back: "El ángulo formado por la línea horizontal y la línea de visión hacia abajo." },
+  { front: "Factorización: Diferencia de cuadrados (a² - b²)", back: "(a + b)(a - b)" },
+  { front: "Factorización: Factor Común de (2x + 4)", back: "2(x + 2)" },
+  { front: "Calculadora: ¿Para qué sirve el botón 'ANS'?", back: "Usa la respuesta exacta del cálculo anterior (sin perder decimales)." },
+  { front: "Calculadora: Si calculas un Seno y sale un número negativo o raro, ¿qué debes revisar?", back: "El modo angular (asegúrate de que esté en DEG para grados)." },
+  { front: "Truco del 9: ¿Qué pasa si bajas el dedo 4 (índice izq)?", back: "Quedan 3 dedos a la izquierda y 6 a la derecha = 9x4 = 36." },
+  { front: "Multiplicación China/Japonesa", back: "Trazar líneas cruzadas por cada dígito y contar las intersecciones." }
 ];
 
 export const EXAM_QUESTIONS = [
@@ -88,5 +123,29 @@ export const EXAM_QUESTIONS = [
     options: ["49.37 m", "47.67 m", "62.23 m", "33.56 m"],
     correctAnswer: "49.37 m",
     resolution: "Cateto Opuesto = 40 * tan(50°) ≈ 47.67 m. Sumando la altura de los ojos: 47.67 m + 1.70 m = 49.37 m."
+  },
+  {
+    question: "Factoriza la siguiente diferencia de cuadrados: 16x² - 9",
+    options: ["(4x - 3)(4x + 3)", "(4x - 3)²", "(16x - 9)(x + 1)", "(8x - 3)(2x + 3)"],
+    correctAnswer: "(4x - 3)(4x + 3)",
+    resolution: "La raíz cuadrada de 16x² es 4x y la de 9 es 3. Al ser una diferencia de cuadrados a² - b², se factoriza como (a - b)(a + b)."
+  },
+  {
+    question: "Factoriza el siguiente trinomio cuadrado perfecto: x² + 10x + 25",
+    options: ["(x + 5)²", "(x - 5)²", "(x + 10)(x + 5)", "x(x + 10) + 25"],
+    correctAnswer: "(x + 5)²",
+    resolution: "La raíz del primer término es x, la del último es 5. El doble del producto es 2*x*5 = 10x, que coincide con el término del medio. Entonces es (x + 5)²."
+  },
+  {
+    question: "Si pones 'tan(90)' en la calculadora científica en modo DEG, ¿qué te mostrará?",
+    options: ["Math Error (Error matemático)", "0", "1", "Infinito"],
+    correctAnswer: "Math Error (Error matemático)",
+    resolution: "La tangente de 90 grados es indefinida (división por cero ya que el coseno de 90° es 0). Las calculadoras muestran Math Error."
+  },
+  {
+    question: "Usando el truco de las manos para la tabla del 9: Si quiero multiplicar 9x7, bajo el séptimo dedo contando de izquierda a derecha. ¿Qué número formo?",
+    options: ["63 (6 a la izquierda, 3 a la derecha)", "54 (5 a la izquierda, 4 a la derecha)", "72 (7 a la izquierda, 2 a la derecha)", "45 (4 a la izquierda, 5 a la derecha)"],
+    correctAnswer: "63 (6 a la izquierda, 3 a la derecha)",
+    resolution: "Al bajar el dedo 7, te quedan exactamente 6 dedos levantados a su izquierda (las decenas) y 3 dedos levantados a su derecha (las unidades) = 63."
   }
 ];
