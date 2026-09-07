@@ -1,5 +1,5 @@
 import { Outlet, Link, useLocation } from "react-router";
-import { BookOpen, Layers, Zap, Trophy, LayoutDashboard, Moon, Sun, Bell, LogOut } from "lucide-react";
+import { BookOpen, Layers, Zap, Trophy, LayoutDashboard, Moon, Sun, Bell, LogOut, Gamepad2 } from "lucide-react";
 import { useAuth } from "../contexts/AuthContext";
 import { useTheme } from "../contexts/ThemeContext";
 
@@ -13,6 +13,7 @@ export default function Layout() {
     { name: "Fórmulas", path: "/learn", icon: BookOpen },
     { name: "Flashcards", path: "/flashcards", icon: Layers },
     { name: "Examen", path: "/exam", icon: Zap },
+    { name: "Juegos", path: "/juegos", icon: Gamepad2 },
     { name: "Ranking", path: "/leaderboard", icon: Trophy },
   ];
 

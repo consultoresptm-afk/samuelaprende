@@ -11,6 +11,7 @@ import Dashboard from "./pages/Dashboard";
 import Learn from "./pages/Learn";
 import Flashcards from "./pages/Flashcards";
 import Exam from "./pages/Exam";
+import Games from "./pages/Games";
 import Leaderboard from "./pages/Leaderboard";
 import Auth from "./components/Auth";
 
@@ -32,6 +33,7 @@ function AppRoutes() {
         <Route path="learn" element={<Learn />} />
         <Route path="flashcards" element={<Flashcards />} />
         <Route path="exam" element={<Exam />} />
+        <Route path="juegos" element={<Games />} />
         <Route path="leaderboard" element={<Leaderboard />} />
       </Route>
       <Route path="*" element={<Navigate to="/" replace />} />
