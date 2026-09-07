@@ -6,7 +6,8 @@ export const FORMULAS = [
       "Coseno (cos) = Cateto Adyacente / Hipotenusa",
       "Tangente (tan) = Cateto Opuesto / Cateto Adyacente"
     ],
-    explanation: "Fórmulas fundamentales (SOH CAH TOA) para resolver triángulos rectángulos conociendo un ángulo y un lado."
+    explanation: "Fórmulas fundamentales (SOH CAH TOA) para resolver triángulos rectángulos conociendo un ángulo y un lado.",
+    applicationMethod: "1. Identifica el ángulo con el que vas a trabajar.\n2. Nombra los lados del triángulo (Hipotenusa, Cateto Opuesto al ángulo, Cateto Adyacente al ángulo).\n3. Determina qué dato tienes y qué dato buscas.\n4. Elige la razón trigonométrica que relacione el dato que tienes con el que buscas.\n5. Despeja la incógnita."
   },
   {
     category: "Teorema de Pitágoras",
@@ -15,7 +16,8 @@ export const FORMULAS = [
       "Hipotenusa = √(C.Opuesto² + C.Adyacente²)",
       "Cateto = √(Hipotenusa² - OtroCateto²)"
     ],
-    explanation: "Útil para encontrar el tercer lado de un triángulo rectángulo cuando ya se conocen los otros dos."
+    explanation: "Útil para encontrar el tercer lado de un triángulo rectángulo cuando ya se conocen los otros dos.",
+    applicationMethod: "1. Asegúrate de tener un triángulo rectángulo (un ángulo de 90°).\n2. Identifica la hipotenusa (el lado más largo, frente al ángulo de 90°) y los catetos (los lados que forman el ángulo de 90°).\n3. Sustituye los valores conocidos en la fórmula general (h² = a² + b²).\n4. Resuelve la ecuación: eleva al cuadrado, suma o resta según corresponda, y finalmente saca la raíz cuadrada."
   },
   {
     category: "Ángulos de Elevación y Depresión",
@@ -23,7 +25,8 @@ export const FORMULAS = [
       "Ángulo de elevación: Se mide desde la horizontal hacia arriba (ej. mirar la cima de una torre).",
       "Ángulo de depresión: Se mide desde la horizontal hacia abajo (ej. mirar desde un avión al suelo)."
     ],
-    explanation: "El ángulo de elevación desde A hasta B es igual al ángulo de depresión desde B hasta A (ángulos alternos internos)."
+    explanation: "El ángulo de elevación desde A hasta B es igual al ángulo de depresión desde B hasta A (ángulos alternos internos).",
+    applicationMethod: "1. Traza una línea horizontal imaginaria desde los ojos del observador.\n2. Traza la línea de visión hacia el objeto.\n3. El ángulo de elevación o depresión es el ángulo formado entre la línea horizontal y la línea de visión.\n4. Frecuentemente se usan con la función Tangente (ya que suelen involucrar altura y distancia horizontal)."
   },
   {
     category: "Casos de Factorización",
@@ -33,7 +36,8 @@ export const FORMULAS = [
       "Trinomio Cuadrado Perfecto: a² ± 2ab + b² = (a ± b)²",
       "Trinomio de la forma x² + bx + c: (x + p)(x + q) donde p+q=b y p*q=c"
     ],
-    explanation: "Permite simplificar expresiones algebraicas transformando sumas/restas en multiplicaciones."
+    explanation: "Permite simplificar expresiones algebraicas transformando sumas/restas en multiplicaciones.",
+    applicationMethod: "1. Revisa siempre si hay un Factor Común primero.\n2. Si es un binomio (dos términos) separados por una resta, revisa si es una Diferencia de Cuadrados.\n3. Si es un trinomio, verifica si los extremos tienen raíz exacta y si el centro es el doble producto de las raíces (Trinomio Cuadrado Perfecto).\n4. Si es de la forma x² + bx + c, busca dos números que multiplicados den 'c' y sumados den 'b'."
   },
   {
     category: "Uso de la Calculadora Científica",
@@ -43,7 +47,8 @@ export const FORMULAS = [
       "Fracciones: Usa el botón 'S<=>D' o 'a b/c' para pasar de fracción a decimal al instante.",
       "Paréntesis: Usa siempre paréntesis al dividir operaciones largas: (a+b)/(c+d)."
     ],
-    explanation: "Trucos para no equivocarse por errores de digitación en la calculadora."
+    explanation: "Trucos para no equivocarse por errores de digitación en la calculadora.",
+    applicationMethod: "1. Antes de cualquier examen, presiona SHIFT + SETUP o MODE y asegúrate de que esté en 'DEG' (Degree / Grados) para problemas básicos de geometría.\n2. Cuando obtengas un resultado intermedio largo, presiona '=' y luego en la siguiente operación usa la tecla 'ANS' en lugar de volver a escribir los decimales.\n3. Revisa la pantalla antes de dar igual: la calculadora lee las operaciones literalmente, si omites un paréntesis, calculará algo completamente distinto."
   },
   {
     category: "Técnicas Visuales de Multiplicación",
@@ -52,7 +57,8 @@ export const FORMULAS = [
       "Truco de los dedos (Tabla del 9): Pon tus 10 dedos frente a ti. Para 9x3, baja el tercer dedo. Quedan 2 dedos a la izquierda y 7 a la derecha = 27.",
       "Tabla del 11: Para multiplicar 11 x 35, separa el 3 y el 5. Suma 3+5=8 y ponlo en el medio = 385."
     ],
-    explanation: "Alternativas visuales y táctiles a la memorización tradicional de las tablas."
+    explanation: "Alternativas visuales y táctiles a la memorización tradicional de las tablas.",
+    applicationMethod: "1. Para el Método Chino: Si es 21 x 13, dibuja 2 líneas, espacio, 1 línea (verticales). Luego cruza 1 línea, espacio, 3 líneas (horizontales). Cuenta las intersecciones en 3 zonas: izquierda (centenas), medio (decenas), derecha (unidades).\n2. Para la del 9: Funciona del 9x1 al 9x10. El número por el que multiplicas indica qué dedo (contando de izquierda a derecha) debes doblar.\n3. Para la del 11: Si la suma de los dos dígitos da más de 9 (ej. 11 x 48), sumas 4+8=12. Dejas el 2 en el medio y sumas el 1 al primer dígito (4+1=5), resultado = 528."
   }
 ];
 
