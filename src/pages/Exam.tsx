@@ -240,7 +240,14 @@ export default function Exam() {
               {showHintFor === currentQIndex ? (
                 <div className="w-full bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-900/30 rounded-xl p-4 text-amber-800 dark:text-amber-200 text-sm font-medium animate-in slide-in-from-top-2 duration-300">
                   <strong className="block text-amber-900 dark:text-amber-400 uppercase tracking-widest text-xs mb-1">💡 Pista:</strong>
-                  {currentQ.hint}
+                  <p className="mb-3">{currentQ.hint}</p>
+                  
+                  {currentQ.formulaHint && (
+                    <div className="bg-white/60 dark:bg-black/20 p-3 rounded-lg border border-amber-200/50 dark:border-amber-700/30 flex flex-col items-center">
+                      <span className="text-[10px] uppercase tracking-widest text-amber-700/70 dark:text-amber-400/70 font-bold mb-1">Fórmula Sugerida</span>
+                      <span className="font-serif italic font-bold text-amber-900 dark:text-amber-300">{currentQ.formulaHint}</span>
+                    </div>
+                  )}
                 </div>
               ) : (
                 <button 
