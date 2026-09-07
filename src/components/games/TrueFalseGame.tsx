@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { Check, X, ArrowLeft, Zap } from "lucide-react";
 import { FLASHCARDS } from "../../data/mathData";
+import { useAuth } from "../../contexts/AuthContext";
 
 export default function TrueFalseGame({ onBack }: { onBack: () => void }) {
+  const { updateUserStats } = useAuth();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [gameOver, setGameOver] = useState(false);
@@ -44,6 +46,10 @@ export default function TrueFalseGame({ onBack }: { onBack: () => void }) {
         setCurrentIndex(c => c + 1);
       } else {
         setGameOver(true);
+        const finalScore = isCorrect ? score + 1 : score;
+        if (finalScore > 0) {
+          updateUserStats(finalScore * 10, finalScore * 2);
+        }
       }
     }, 1200);
   };

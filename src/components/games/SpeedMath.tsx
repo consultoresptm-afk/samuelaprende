@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import { Timer, Trophy, ArrowLeft, Play, XCircle } from "lucide-react";
+import { useAuth } from "../../contexts/AuthContext";
 
 export default function SpeedMath({ onBack }: { onBack: () => void }) {
+  const { updateUserStats } = useAuth();
   const [isPlaying, setIsPlaying] = useState(false);
   const [timeLeft, setTimeLeft] = useState(60);
   const [score, setScore] = useState(0);
@@ -49,6 +51,9 @@ export default function SpeedMath({ onBack }: { onBack: () => void }) {
     } else if (timeLeft === 0 && isPlaying) {
       setIsPlaying(false);
       setGameOver(true);
+      if (score > 0) {
+        updateUserStats(score * 10, score * 2);
+      }
     }
     return () => clearInterval(timer);
   }, [isPlaying, timeLeft]);

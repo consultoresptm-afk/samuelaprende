@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Puzzle, ArrowLeft, RefreshCw } from "lucide-react";
+import { useAuth } from "../../contexts/AuthContext";
 
 const FORMULAS_TO_BUILD = [
   {
@@ -40,6 +41,7 @@ const FORMULAS_TO_BUILD = [
 ];
 
 export default function FormulaBuilder({ onBack }: { onBack: () => void }) {
+  const { updateUserStats } = useAuth();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [gameOver, setGameOver] = useState(false);
@@ -66,6 +68,10 @@ export default function FormulaBuilder({ onBack }: { onBack: () => void }) {
         setIsCorrect(null);
       } else {
         setGameOver(true);
+        const finalScore = correct ? score + 1 : score;
+        if (finalScore > 0) {
+          updateUserStats(finalScore * 10, finalScore * 2);
+        }
       }
     }, 1500);
   };

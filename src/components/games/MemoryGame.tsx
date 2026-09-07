@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { FLASHCARDS } from "../../data/mathData";
 import { RefreshCw, Trophy, Gamepad2, BrainCircuit, ArrowLeft } from "lucide-react";
+import { useAuth } from "../../contexts/AuthContext";
 
 interface Card {
   id: string;
@@ -10,6 +11,7 @@ interface Card {
 }
 
 export default function MemoryGame({ onBack }: { onBack: () => void }) {
+  const { updateUserStats } = useAuth();
   const [cards, setCards] = useState<Card[]>([]);
   const [flippedIndices, setFlippedIndices] = useState<number[]>([]);
   const [moves, setMoves] = useState(0);
@@ -77,6 +79,7 @@ export default function MemoryGame({ onBack }: { onBack: () => void }) {
 
         if (matches + 1 === cards.length / 2) {
           setIsWon(true);
+          updateUserStats(100, 20); // 100 XP, 20 Coins
         }
       } else {
         setTimeout(() => {
