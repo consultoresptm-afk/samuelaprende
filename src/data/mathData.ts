@@ -86,72 +86,84 @@ export const EXAM_QUESTIONS = [
     question: "Una escalera de 5 m de longitud está apoyada contra una pared. La escalera forma un ángulo de 60° con el suelo. ¿A qué altura de la pared llega la escalera?",
     options: ["4.33 m", "2.5 m", "8.66 m", "5 m"],
     correctAnswer: "4.33 m",
-    resolution: "Se usa el Seno(60°) = Cateto Opuesto / Hipotenusa. Despejando: Altura = 5 * sen(60°) ≈ 5 * 0.866 = 4.33 m."
+    resolution: "Se usa el Seno(60°) = Cateto Opuesto / Hipotenusa. Despejando: Altura = 5 * sen(60°) ≈ 5 * 0.866 = 4.33 m.",
+    hint: "Recuerda SOH: El seno del ángulo relaciona la altura (cateto opuesto) con la longitud de la escalera (hipotenusa)."
   },
   {
     question: "Una persona se encuentra a 10 m de la base de un árbol. Si observa la parte superior del árbol con un ángulo de elevación de 35°, ¿cuál es la altura aproximada del árbol?",
     options: ["14.28 m", "7.00 m", "5.73 m", "12.20 m"],
     correctAnswer: "7.00 m",
-    resolution: "Se usa Tangente(35°) = Cateto Opuesto / Cateto Adyacente. Altura = 10 * tan(35°) ≈ 10 * 0.7002 = 7.00 m."
+    resolution: "Se usa Tangente(35°) = Cateto Opuesto / Cateto Adyacente. Altura = 10 * tan(35°) ≈ 10 * 0.7002 = 7.00 m.",
+    hint: "Tienes la distancia horizontal (adyacente) y buscas la altura (opuesto). Usa TOA (Tangente)."
   },
   {
     question: "Un niño sostiene una cuerda de 20 m de longitud que forma un ángulo de 40° con el suelo. Suponiendo que la cuerda está completamente tensa, ¿a qué altura se encuentra la cometa?",
     options: ["15.32 m", "12.86 m", "16.78 m", "10.00 m"],
     correctAnswer: "12.86 m",
-    resolution: "Se usa Seno(40°) = Cateto Opuesto / Hipotenusa. Altura = 20 * sen(40°) ≈ 20 * 0.6428 = 12.86 m."
+    resolution: "Se usa Seno(40°) = Cateto Opuesto / Hipotenusa. Altura = 20 * sen(40°) ≈ 20 * 0.6428 = 12.86 m.",
+    hint: "La cuerda representa la hipotenusa. Estás buscando la altura (cateto opuesto). Usa el Seno."
   },
   {
     question: "Una rampa para personas con movilidad reducida tiene una longitud de 6 m y forma un ángulo de 12° con el suelo. ¿Qué altura alcanza la rampa?",
     options: ["1.25 m", "5.87 m", "1.50 m", "2.10 m"],
     correctAnswer: "1.25 m",
-    resolution: "Se usa Seno(12°) = Cateto Opuesto / Hipotenusa. Altura = 6 * sen(12°) ≈ 6 * 0.2079 = 1.25 m."
+    resolution: "Se usa Seno(12°) = Cateto Opuesto / Hipotenusa. Altura = 6 * sen(12°) ≈ 6 * 0.2079 = 1.25 m.",
+    hint: "La rampa es la hipotenusa. Quieres saber la altura a la que llega (opuesto). SOH."
   },
   {
     question: "Un avión se encuentra a una altura de 2.500 m. Desde un punto en tierra, el ángulo de elevación hacia el avión es de 30°. ¿Cuál es la distancia aproximada entre el punto de observación (en tierra) y el avión?",
     options: ["5000 m", "4330 m", "2886 m", "1250 m"],
     correctAnswer: "5000 m",
-    resolution: "Se usa Seno(30°) = Cateto Opuesto / Hipotenusa. Despejando: Hipotenusa = 2500 / sen(30°) = 2500 / 0.5 = 5000 m."
+    resolution: "Se usa Seno(30°) = Cateto Opuesto / Hipotenusa. Despejando: Hipotenusa = 2500 / sen(30°) = 2500 / 0.5 = 5000 m.",
+    hint: "Tienes la altura (opuesto) y te piden la distancia visual (hipotenusa). Usa Seno y despeja la hipotenusa."
   },
   {
     question: "Una persona observa la cima de una montaña desde un punto situado a 800 m de su base. El ángulo de elevación es de 28°. Si los ojos de la persona están a 1,60 m sobre el suelo, ¿cuál es la altura aproximada de la montaña?",
     options: ["426.96 m", "425.36 m", "800.00 m", "907.50 m"],
     correctAnswer: "426.96 m",
-    resolution: "Cateto Opuesto = 800 * tan(28°) ≈ 425.36 m. Luego se suma la altura del observador: 425.36 m + 1.60 m = 426.96 m."
+    resolution: "Cateto Opuesto = 800 * tan(28°) ≈ 425.36 m. Luego se suma la altura del observador: 425.36 m + 1.60 m = 426.96 m.",
+    hint: "Usa la Tangente para hallar la altura del triángulo, ¡pero no te olvides de sumarle la altura de la persona al final!"
   },
   {
     question: "Desde un punto A, una persona observa la parte superior de una torre con un ángulo de elevación de 30°. Luego se acerca 20 m hacia la torre hasta el punto B y observa la parte superior con un ángulo de 45°. ¿Cuál es la altura de la torre?",
     options: ["27.32 m", "34.64 m", "20.00 m", "47.32 m"],
     correctAnswer: "27.32 m",
-    resolution: "Sistema de ecuaciones: h = x*tan(45°) y h = (x+20)*tan(30°). Como tan(45°)=1, x=h. Resolviendo: h = 20√3 / (3-√3) ≈ 27.32 m."
+    resolution: "Sistema de ecuaciones: h = x*tan(45°) y h = (x+20)*tan(30°). Como tan(45°)=1, x=h. Resolviendo: h = 20√3 / (3-√3) ≈ 27.32 m.",
+    hint: "Se forman dos triángulos rectángulos diferentes. Expresa la altura 'h' usando la tangente en ambos y luego iguala las expresiones."
   },
   {
     question: "Desde la orilla de un río se observa la parte superior de un edificio ubicado en la otra orilla, a 40 m de distancia horizontal, con un ángulo de elevación de 50°. Si la altura de los ojos de la persona es de 1,70 m, ¿cuál es la altura total del edificio?",
     options: ["49.37 m", "47.67 m", "62.23 m", "33.56 m"],
     correctAnswer: "49.37 m",
-    resolution: "Cateto Opuesto = 40 * tan(50°) ≈ 47.67 m. Sumando la altura de los ojos: 47.67 m + 1.70 m = 49.37 m."
+    resolution: "Cateto Opuesto = 40 * tan(50°) ≈ 47.67 m. Sumando la altura de los ojos: 47.67 m + 1.70 m = 49.37 m.",
+    hint: "Similar al ejercicio de la montaña. Calcula el cateto opuesto con la Tangente y suma la altura del observador."
   },
   {
     question: "Factoriza la siguiente diferencia de cuadrados: 16x² - 9",
     options: ["(4x - 3)(4x + 3)", "(4x - 3)²", "(16x - 9)(x + 1)", "(8x - 3)(2x + 3)"],
     correctAnswer: "(4x - 3)(4x + 3)",
-    resolution: "La raíz cuadrada de 16x² es 4x y la de 9 es 3. Al ser una diferencia de cuadrados a² - b², se factoriza como (a - b)(a + b)."
+    resolution: "La raíz cuadrada de 16x² es 4x y la de 9 es 3. Al ser una diferencia de cuadrados a² - b², se factoriza como (a - b)(a + b).",
+    hint: "Saca la raíz cuadrada de ambos términos y agrúpalos sumando y restando."
   },
   {
     question: "Factoriza el siguiente trinomio cuadrado perfecto: x² + 10x + 25",
     options: ["(x + 5)²", "(x - 5)²", "(x + 10)(x + 5)", "x(x + 10) + 25"],
     correctAnswer: "(x + 5)²",
-    resolution: "La raíz del primer término es x, la del último es 5. El doble del producto es 2*x*5 = 10x, que coincide con el término del medio. Entonces es (x + 5)²."
+    resolution: "La raíz del primer término es x, la del último es 5. El doble del producto es 2*x*5 = 10x, que coincide con el término del medio. Entonces es (x + 5)².",
+    hint: "Revisa el último número (25). ¿Cuál es su raíz cuadrada? Si la multiplicas por 2, ¿da el del medio?"
   },
   {
     question: "Si pones 'tan(90)' en la calculadora científica en modo DEG, ¿qué te mostrará?",
     options: ["Math Error (Error matemático)", "0", "1", "Infinito"],
     correctAnswer: "Math Error (Error matemático)",
-    resolution: "La tangente de 90 grados es indefinida (división por cero ya que el coseno de 90° es 0). Las calculadoras muestran Math Error."
+    resolution: "La tangente de 90 grados es indefinida (división por cero ya que el coseno de 90° es 0). Las calculadoras muestran Math Error.",
+    hint: "Recuerda que Tangente = Seno / Coseno. El coseno de 90° es 0, y dividir entre cero..."
   },
   {
     question: "Usando el truco de las manos para la tabla del 9: Si quiero multiplicar 9x7, bajo el séptimo dedo contando de izquierda a derecha. ¿Qué número formo?",
     options: ["63 (6 a la izquierda, 3 a la derecha)", "54 (5 a la izquierda, 4 a la derecha)", "72 (7 a la izquierda, 2 a la derecha)", "45 (4 a la izquierda, 5 a la derecha)"],
     correctAnswer: "63 (6 a la izquierda, 3 a la derecha)",
-    resolution: "Al bajar el dedo 7, te quedan exactamente 6 dedos levantados a su izquierda (las decenas) y 3 dedos levantados a su derecha (las unidades) = 63."
+    resolution: "Al bajar el dedo 7, te quedan exactamente 6 dedos levantados a su izquierda (las decenas) y 3 dedos levantados a su derecha (las unidades) = 63.",
+    hint: "Visualiza tus 10 dedos. Cuenta desde el pulgar izquierdo hasta el dedo 7. ¿Cuántos dedos te quedan a cada lado de ese dedo?"
   }
 ];

@@ -17,6 +17,7 @@ export default function Exam() {
   const [answers, setAnswers] = useState<Record<number, string>>({});
   const [score, setScore] = useState(0);
   const [showResolutionFor, setShowResolutionFor] = useState<number | null>(null);
+  const [showHintFor, setShowHintFor] = useState<number | null>(null);
 
   // Timer logic
   useEffect(() => {
@@ -45,6 +46,7 @@ export default function Exam() {
   const handleNext = () => {
     if (currentQIndex < EXAM_QUESTIONS.length - 1) {
       setCurrentQIndex(prev => prev + 1);
+      setShowHintFor(null);
     } else {
       finishExam();
     }
@@ -153,24 +155,14 @@ export default function Exam() {
                     <p className="text-sm text-slate-600 dark:text-slate-400 mb-1">
                       Tu respuesta: <span className="font-mono bg-white dark:bg-slate-900 px-2 py-0.5 rounded border border-slate-200 dark:border-slate-700">{answers[i] || 'No respondida'}</span>
                     </p>
-                    {!isCorrect && (
-                      <p className="text-sm text-slate-600 dark:text-slate-400">
-                        Respuesta correcta: <span className="font-mono text-emerald-600 dark:text-emerald-400">{q.correctAnswer}</span>
-                      </p>
-                    )}
+                    <p className="text-sm text-slate-600 dark:text-slate-400">
+                      Respuesta correcta: <span className="font-mono text-emerald-600 dark:text-emerald-400">{q.correctAnswer}</span>
+                    </p>
                     
-                    <button 
-                      onClick={() => setShowResolutionFor(showResolutionFor === i ? null : i)}
-                      className="mt-3 text-sm text-indigo-600 dark:text-indigo-400 font-bold hover:underline"
-                    >
-                      {showResolutionFor === i ? 'Ocultar resolución' : 'Ver resolución paso a paso'}
-                    </button>
-                    
-                    {showResolutionFor === i && (
-                      <div className="mt-3 p-4 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-700 text-sm text-slate-700 dark:text-slate-300">
-                        {q.resolution}
-                      </div>
-                    )}
+                    <div className="mt-4 p-4 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-700 text-sm text-slate-700 dark:text-slate-300">
+                      <strong className="block text-indigo-600 dark:text-indigo-400 uppercase tracking-widest text-xs mb-2">Resolución paso a paso:</strong>
+                      {q.resolution}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -241,6 +233,25 @@ export default function Exam() {
               );
             })}
           </div>
+
+          {/* Hint Area */}
+          {currentQ.hint && !answeredCurrent && (
+            <div className="mt-6 flex flex-col items-center">
+              {showHintFor === currentQIndex ? (
+                <div className="w-full bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-900/30 rounded-xl p-4 text-amber-800 dark:text-amber-200 text-sm font-medium animate-in slide-in-from-top-2 duration-300">
+                  <strong className="block text-amber-900 dark:text-amber-400 uppercase tracking-widest text-xs mb-1">💡 Pista:</strong>
+                  {currentQ.hint}
+                </div>
+              ) : (
+                <button 
+                  onClick={() => setShowHintFor(currentQIndex)}
+                  className="text-amber-600 dark:text-amber-500 text-sm font-bold hover:underline flex items-center gap-2"
+                >
+                  💡 Mostrar sugerencia (Pista)
+                </button>
+              )}
+            </div>
+          )}
         </div>
       </div>
 
