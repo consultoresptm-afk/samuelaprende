@@ -150,7 +150,7 @@ export default function Games() {
               <div 
                 key={card.id}
                 onClick={() => handleCardClick(index)}
-                className={`relative h-32 md:h-40 rounded-2xl cursor-pointer transition-all duration-500 transform-style-3d ${isFlipped ? 'rotate-y-180' : 'hover:scale-[1.02]'} ${card.isMatched ? 'opacity-50' : 'opacity-100'}`}
+                className={`relative h-32 md:h-40 rounded-2xl cursor-pointer transition-all duration-500 ${!isFlipped ? 'hover:scale-[1.02]' : ''} ${card.isMatched ? 'opacity-50' : 'opacity-100'}`}
                 style={{ perspective: "1000px" }}
               >
                 {/* Contenedor interno que gira */}
