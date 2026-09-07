@@ -107,12 +107,6 @@ export default function Layout() {
 
       {/* Main Content */}
       <main className="flex-1 flex flex-col h-screen overflow-y-auto pb-16 md:pb-0">
-        {/* Offline warning */}
-        {error && (
-          <div className="bg-yellow-500/20 text-yellow-600 dark:text-yellow-400 p-2 text-center text-sm font-bold border-b border-yellow-500/30">
-            {error}
-          </div>
-        )}
         {/* Mobile Header (only visible on mobile) */}
         <header className="md:hidden flex items-center justify-between p-4 bg-white dark:bg-slate-900/80 border-b border-slate-200 dark:border-slate-800 sticky top-0 z-40">
           <div className="flex items-center gap-2">

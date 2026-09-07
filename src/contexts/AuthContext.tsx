@@ -108,17 +108,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         }
       } catch (err: any) {
         console.error("Error fetching user data:", err);
-        setUser({
-          uid: "local-error-user",
-          displayName: "Estudiante Local",
-          email: null,
-          score: 0,
-          level: 1,
-          coins: 0,
-          streak: 1,
-          lastStudyDate: new Date().toISOString().split("T")[0]
-        });
-        setError("Modo sin conexión activado debido a permisos insuficientes de Firebase.");
+        // Remove offline mode, force re-login if fetching data fails
+        setUser(null);
+        setError("Error de permisos de Firestore. Verifica las reglas de tu base de datos.");
         setLoading(false);
       }
     });
