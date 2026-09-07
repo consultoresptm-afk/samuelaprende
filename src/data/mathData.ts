@@ -51,6 +51,49 @@ export const FORMULAS = [
     applicationMethod: "1. Antes de cualquier examen, presiona SHIFT + SETUP o MODE y asegúrate de que esté en 'DEG' (Degree / Grados) para problemas básicos de geometría.\n2. Cuando obtengas un resultado intermedio largo, presiona '=' y luego en la siguiente operación usa la tecla 'ANS' en lugar de volver a escribir los decimales.\n3. Revisa la pantalla antes de dar igual: la calculadora lee las operaciones literalmente, si omites un paréntesis, calculará algo completamente distinto."
   },
   {
+    category: "Leyes de Senos y Cosenos",
+    formulas: [
+      "Ley de Senos: a/sen(A) = b/sen(B) = c/sen(C)",
+      "Ley de Cosenos: c² = a² + b² - 2ab * cos(C)"
+    ],
+    explanation: "Se usan para resolver triángulos que NO son rectángulos (triángulos oblicuángulos).",
+    applicationMethod: "1. Usa la Ley de Senos cuando conozcas una pareja completa (lado y su ángulo opuesto) y cualquier otro dato.\n2. Usa la Ley de Cosenos cuando conozcas los tres lados (LLL) o dos lados y el ángulo comprendido entre ellos (LAL).\n3. Despeja cuidadosamente usando funciones trigonométricas inversas (arcsin, arccos) en la calculadora si buscas un ángulo."
+  },
+  {
+    category: "Geometría Analítica: La Recta",
+    formulas: [
+      "Distancia entre dos puntos: d = √[(x₂ - x₁)² + (y₂ - y₁)²]",
+      "Punto Medio: M = ( (x₁+x₂)/2 , (y₁+y₂)/2 )",
+      "Pendiente (m): m = (y₂ - y₁) / (x₂ - x₁)",
+      "Ecuación Punto-Pendiente: y - y₁ = m(x - x₁)"
+    ],
+    explanation: "Fórmulas para estudiar líneas y segmentos en el plano cartesiano (ejes X y Y).",
+    applicationMethod: "1. Identifica claramente las coordenadas de tus dos puntos: P1(x1, y1) y P2(x2, y2).\n2. Para la distancia, resta las X, resta las Y, eleva cada resta al cuadrado, suma y saca raíz.\n3. La pendiente (m) indica la inclinación. Si es positiva sube, si es negativa baja.\n4. Para hallar la ecuación de una recta, necesitas la pendiente y al menos un punto. Sustituye en la fórmula Punto-Pendiente y despeja 'y'."
+  },
+  {
+    category: "Ecuaciones Cuadráticas",
+    formulas: [
+      "Forma General: ax² + bx + c = 0",
+      "Fórmula General (Cuadrática): x = [ -b ± √(b² - 4ac) ] / 2a",
+      "Discriminante (Δ): Δ = b² - 4ac",
+      "Vértice de una Parábola: x = -b / (2a)"
+    ],
+    explanation: "Herramientas para resolver ecuaciones de segundo grado y analizar sus gráficas (parábolas).",
+    applicationMethod: "1. Ordena tu ecuación igualándola a cero (ax² + bx + c = 0).\n2. Identifica los valores numéricos de a, b y c (con todo y sus signos).\n3. Calcula primero el discriminante (b² - 4ac). Si es positivo, hay dos soluciones; si es cero, hay una; si es negativo, no hay solución real.\n4. Sustituye todo en la fórmula general, separando al final un cálculo con el signo '+' y otro con el '-'."
+  },
+  {
+    category: "Áreas y Volúmenes Comunes",
+    formulas: [
+      "Área de un Círculo: A = π * r²",
+      "Perímetro de un Círculo: C = 2 * π * r",
+      "Volumen de un Cilindro: V = π * r² * h",
+      "Volumen de una Esfera: V = (4/3) * π * r³",
+      "Volumen de un Cono: V = (1/3) * π * r² * h"
+    ],
+    explanation: "Cálculos básicos de geometría plana y del espacio, muy frecuentes en problemas de optimización y trigonometría tridimensional.",
+    applicationMethod: "1. Identifica qué figura geométrica describe el problema.\n2. Asegúrate de que todas las unidades de medida sean iguales (todo en cm, o todo en metros).\n3. Reconoce si el problema te da el 'radio' (del centro al borde) o el 'diámetro' (de lado a lado). Si te da el diámetro, divídelo entre 2 para usar las fórmulas.\n4. Sustituye y usa el valor de π en la calculadora."
+  },
+  {
     category: "Técnicas Visuales de Multiplicación",
     formulas: [
       "Método Chino/Japonés (Líneas): Dibuja líneas paralelas cruzadas para cada dígito. Cuenta las intersecciones para obtener el resultado.",
