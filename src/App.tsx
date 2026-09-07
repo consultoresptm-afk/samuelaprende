@@ -12,16 +12,17 @@ import Learn from "./pages/Learn";
 import Flashcards from "./pages/Flashcards";
 import Exam from "./pages/Exam";
 import Leaderboard from "./pages/Leaderboard";
+import Auth from "./components/Auth";
 
 function AppRoutes() {
-  const { user, loading } = useAuth();
+  const { user, loading, error } = useAuth();
 
   if (loading) {
     return <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-[#0F172A]"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600"></div></div>;
   }
 
   if (!user) {
-    return <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-[#0F172A] text-slate-900 dark:text-white">Error de conexión. Por favor, recarga la página.</div>;
+    return <Auth />;
   }
 
   return (

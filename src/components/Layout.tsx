@@ -1,10 +1,10 @@
 import { Outlet, Link, useLocation } from "react-router";
-import { BookOpen, Layers, Zap, Trophy, LayoutDashboard, Moon, Sun, Bell } from "lucide-react";
+import { BookOpen, Layers, Zap, Trophy, LayoutDashboard, Moon, Sun, Bell, LogOut } from "lucide-react";
 import { useAuth } from "../contexts/AuthContext";
 import { useTheme } from "../contexts/ThemeContext";
 
 export default function Layout() {
-  const { user } = useAuth();
+  const { user, error, logout } = useAuth();
   const { theme, setTheme } = useTheme();
   const location = useLocation();
 
@@ -93,6 +93,13 @@ export default function Layout() {
                 <p className="text-sm font-bold truncate">{user.displayName}</p>
                 <p className="text-[10px] text-pink-600 dark:text-pink-400 font-bold tracking-widest uppercase truncate">NIVEL {user.level} • {user.coins} 💰</p>
               </div>
+              <button 
+                onClick={logout}
+                className="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10 rounded-lg transition-colors ml-auto shrink-0"
+                title="Cerrar sesión"
+              >
+                <LogOut size={18} />
+              </button>
             </div>
           )}
         </div>
@@ -100,6 +107,12 @@ export default function Layout() {
 
       {/* Main Content */}
       <main className="flex-1 flex flex-col h-screen overflow-y-auto pb-16 md:pb-0">
+        {/* Offline warning */}
+        {error && (
+          <div className="bg-yellow-500/20 text-yellow-600 dark:text-yellow-400 p-2 text-center text-sm font-bold border-b border-yellow-500/30">
+            {error}
+          </div>
+        )}
         {/* Mobile Header (only visible on mobile) */}
         <header className="md:hidden flex items-center justify-between p-4 bg-white dark:bg-slate-900/80 border-b border-slate-200 dark:border-slate-800 sticky top-0 z-40">
           <div className="flex items-center gap-2">

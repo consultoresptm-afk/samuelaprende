@@ -17,13 +17,17 @@ interface AppUser {
 interface AuthContextType {
   user: AppUser | null;
   loading: boolean;
+  error: string | null;
   updateUserStats: (addedScore: number, addedCoins: number) => Promise<void>;
+  logout: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType>({
   user: null,
   loading: true,
+  error: null,
   updateUserStats: async () => {},
+  logout: async () => {},
 });
 
 export const useAuth = () => useContext(AuthContext);
@@ -31,82 +35,104 @@ export const useAuth = () => useContext(AuthContext);
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<AppUser | null>(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
-      if (firebaseUser) {
-        const userRef = doc(db, "users", firebaseUser.uid);
-        const userSnap = await getDoc(userRef);
-        
-        let appUserData: AppUser;
-
-        const today = new Date().toISOString().split("T")[0];
-
-        if (userSnap.exists()) {
-          const data = userSnap.data();
-          let newStreak = data.streak || 0;
-          let newLastStudyDate = data.lastStudyDate || "";
+      try {
+        if (firebaseUser) {
+          const userRef = doc(db, "users", firebaseUser.uid);
+          const userSnap = await getDoc(userRef);
           
-          if (newLastStudyDate) {
-            const lastDate = new Date(newLastStudyDate);
-            const currentDate = new Date(today);
-            const diffTime = Math.abs(currentDate.getTime() - lastDate.getTime());
-            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+          let appUserData: AppUser;
+  
+          const today = new Date().toISOString().split("T")[0];
+  
+          if (userSnap.exists()) {
+            const data = userSnap.data();
+            let newStreak = data.streak || 0;
+            let newLastStudyDate = data.lastStudyDate || "";
             
-            if (diffDays === 1) {
-              newStreak += 1;
-            } else if (diffDays > 1) {
-              newStreak = 0;
+            if (newLastStudyDate) {
+              const lastDate = new Date(newLastStudyDate);
+              const currentDate = new Date(today);
+              const diffTime = Math.abs(currentDate.getTime() - lastDate.getTime());
+              const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+              
+              if (diffDays === 1) {
+                newStreak += 1;
+              } else if (diffDays > 1) {
+                newStreak = 0;
+              }
+            } else {
+               newStreak = 1;
             }
+  
+            if (newLastStudyDate !== today) {
+               newLastStudyDate = today;
+               await setDoc(userRef, { streak: newStreak, lastStudyDate: newLastStudyDate }, { merge: true });
+            }
+  
+            appUserData = {
+              uid: firebaseUser.uid,
+              displayName: data.displayName || firebaseUser.displayName || "Estudiante Anónimo",
+              email: firebaseUser.email,
+              score: data.score || 0,
+              level: data.level || 1,
+              coins: data.coins || 0,
+              streak: newStreak,
+              lastStudyDate: newLastStudyDate
+            };
           } else {
-             newStreak = 1;
+            appUserData = {
+              uid: firebaseUser.uid,
+              displayName: firebaseUser.displayName || "Estudiante Anónimo",
+              email: firebaseUser.email,
+              score: 0,
+              level: 1,
+              coins: 0,
+              streak: 1,
+              lastStudyDate: today
+            };
+            await setDoc(userRef, {
+              ...appUserData,
+              createdAt: new Date().toISOString()
+            });
           }
-
-          if (newLastStudyDate !== today) {
-             newLastStudyDate = today;
-             await setDoc(userRef, { streak: newStreak, lastStudyDate: newLastStudyDate }, { merge: true });
-          }
-
-          appUserData = {
-            uid: firebaseUser.uid,
-            displayName: data.displayName || firebaseUser.displayName || "Estudiante Anónimo",
-            email: firebaseUser.email,
-            score: data.score || 0,
-            level: data.level || 1,
-            coins: data.coins || 0,
-            streak: newStreak,
-            lastStudyDate: newLastStudyDate
-          };
+          setUser(appUserData);
+          setLoading(false);
         } else {
-          appUserData = {
-            uid: firebaseUser.uid,
-            displayName: firebaseUser.displayName || "Estudiante Anónimo",
-            email: firebaseUser.email,
-            score: 0,
-            level: 1,
-            coins: 0,
-            streak: 1,
-            lastStudyDate: today
-          };
-          await setDoc(userRef, {
-            ...appUserData,
-            createdAt: new Date().toISOString()
-          });
-        }
-        setUser(appUserData);
-        setLoading(false);
-      } else {
-        try {
-          await signInAnonymously(auth);
-        } catch (error) {
-          console.error("Error logging in anonymously:", error);
+          // Usuario no autenticado
+          setUser(null);
           setLoading(false);
         }
+      } catch (err: any) {
+        console.error("Error fetching user data:", err);
+        setUser({
+          uid: "local-error-user",
+          displayName: "Estudiante Local",
+          email: null,
+          score: 0,
+          level: 1,
+          coins: 0,
+          streak: 1,
+          lastStudyDate: new Date().toISOString().split("T")[0]
+        });
+        setError("Modo sin conexión activado debido a permisos insuficientes de Firebase.");
+        setLoading(false);
       }
     });
 
     return () => unsubscribe();
   }, []);
+
+  const logout = async () => {
+    try {
+      await auth.signOut();
+    } catch (err) {
+      console.error("Error signing out", err);
+    }
+  };
 
   const updateUserStats = async (addedScore: number, addedCoins: number) => {
     if (!user) return;
@@ -124,17 +150,23 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     
     setUser(updatedUser);
     
-    const userRef = doc(db, "users", user.uid);
-    await setDoc(userRef, {
-      score: newScore,
-      coins: newCoins,
-      level: newLevel,
-      displayName: user.displayName // ensure it stays updated
-    }, { merge: true });
+    if (user.uid.startsWith('local-')) return;
+
+    try {
+      const userRef = doc(db, "users", user.uid);
+      await setDoc(userRef, {
+        score: newScore,
+        coins: newCoins,
+        level: newLevel,
+        displayName: user.displayName
+      }, { merge: true });
+    } catch (e) {
+      console.warn("Could not save to firestore", e);
+    }
   };
 
   return (
-    <AuthContext.Provider value={{ user, loading, updateUserStats }}>
+    <AuthContext.Provider value={{ user, loading, error, updateUserStats, logout }}>
       {children}
     </AuthContext.Provider>
   );
