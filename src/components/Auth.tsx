@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+import { signInWithRedirect, GoogleAuthProvider } from 'firebase/auth';
 import { auth } from '../firebase';
 import { Rocket } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
@@ -16,7 +16,8 @@ export default function Auth() {
       setLocalError('');
       setLoading(true);
       const provider = new GoogleAuthProvider();
-      await signInWithPopup(auth, provider);
+      // Usamos signInWithRedirect para evitar bloqueos de popup (Cross-Origin-Opener-Policy)
+      await signInWithRedirect(auth, provider);
     } catch (err: any) {
       console.error("Error signing in with Google", err);
       if (err.code === 'auth/unauthorized-domain') {
